@@ -128,38 +128,3 @@ document.addEventListener('DOMContentLoaded', () => {
     captionDelay: 250,
   });
 });
-
-// const gallery = document.querySelector('.gallery');
-// function addImagesToGallery(images) {
-//   images.forEach(image => {
-//     const li = document.createElement('li');
-//     const a = document.createElement('a');
-//     const img = document.createElement('img');
-//     img.src = image.preview;
-//     img.alt = image.description;
-//     a.href = image.original;
-//     a.appendChild(img);
-//     li.appendChild(a);
-//     gallery.appendChild(li);
-//   });
-// }
-// addImagesToGallery(images);
-
-// const gallery = new SimpleLightbox('.images a', {
-//   /* options */
-// });
-// const galleryMarkup = images
-//   .map(({ preview, original, description }) => {
-//     return `   <li class="gallery-item">
-//         <a class="gallery-link" href="${original}">
-//           <img
-//             class="gallery-image"
-//             src="${preview}"
-//             data-source="${original}"
-//             alt="${description}"
-//           />
-//         </a>
-//       </li>`;
-//   })
-//   .join('');
-// gallery.innerHTML = galleryMarkup;
