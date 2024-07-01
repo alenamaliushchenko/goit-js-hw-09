@@ -35,6 +35,10 @@
 // Після цього подивись у документації секцію «Options» і додай відображення підписів до зображень з
 // атрибута alt.Нехай підпис буде знизу і з'являється через 250 мілісекунд після відкриття модального вікна.
 
+// import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from 'simplelightbox';
+
 const images = [
   {
     preview:
@@ -100,20 +104,62 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
+const gallery = document.querySelector('.gallery');
 
-const gallery = document.querySelector('ul.gallery');
-const galleryMarkup = images
-  .map(({ preview, original, description }) => {
-    return `   <li class="gallery-item">
-        <a class="gallery-link" href="${original}">
-          <img
-            class="gallery-image"
-            src="${preview}"
-            data-source="${original}"
-            alt="${description}"
-          />
-        </a>
-      </li>`;
-  })
-  .join('');
-gallery.innerHTML = galleryMarkup;
+images.forEach(image => {
+  const li = document.createElement('li');
+  li.classList.add('gallery-item');
+  const a = document.createElement('a');
+  a.href = image.original;
+  a.classList.add('gallery-link');
+
+  const img = document.createElement('img');
+  img.src = image.preview;
+  img.alt = image.description;
+  img.classList.add('gallery-image');
+  a.appendChild(img);
+  li.appendChild(a);
+  gallery.appendChild(li);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  new SimpleLightbox('.gallery li a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+});
+
+// const gallery = document.querySelector('.gallery');
+// function addImagesToGallery(images) {
+//   images.forEach(image => {
+//     const li = document.createElement('li');
+//     const a = document.createElement('a');
+//     const img = document.createElement('img');
+//     img.src = image.preview;
+//     img.alt = image.description;
+//     a.href = image.original;
+//     a.appendChild(img);
+//     li.appendChild(a);
+//     gallery.appendChild(li);
+//   });
+// }
+// addImagesToGallery(images);
+
+// const gallery = new SimpleLightbox('.images a', {
+//   /* options */
+// });
+// const galleryMarkup = images
+//   .map(({ preview, original, description }) => {
+//     return `   <li class="gallery-item">
+//         <a class="gallery-link" href="${original}">
+//           <img
+//             class="gallery-image"
+//             src="${preview}"
+//             data-source="${original}"
+//             alt="${description}"
+//           />
+//         </a>
+//       </li>`;
+//   })
+//   .join('');
+// gallery.innerHTML = galleryMarkup;
